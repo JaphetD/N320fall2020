@@ -39,11 +39,11 @@ myRainDrops[2] = new RainDrop(155, -150, 100, [166, 214, 222]);
 myRainDrops[3] = new RainDrop(300, -500, 100, [166, 214, 222]);
 myRainDrops[4] = new RainDrop(100, -400, 100, [166, 214, 222]);
 myRainDrops[5] = new RainDrop(170, -600, 100, [166, 214, 222]);
-myRainDrops[6] = new RainDrop(350, -700, 100, [166, 214, 222]);
-myRainDrops[7] = new RainDrop(500, -700, 100, [166, 214, 222]);
-myRainDrops[8] = new RainDrop(450, -700, 100, [166, 214, 222]);
-myRainDrops[9] = new RainDrop(399, -700, 100, [166, 214, 222]);
-myRainDrops[10] = new RainDrop(370, -700, 100, [166, 214, 222]);
+myRainDrops[6] = new RainDrop(350, -100, 100, [166, 214, 222]);
+myRainDrops[7] = new RainDrop(500, -90, 100, [166, 214, 222]);
+myRainDrops[8] = new RainDrop(450, -200, 100, [166, 214, 222]);
+myRainDrops[9] = new RainDrop(250, -499, 100, [166, 214, 222]);
+myRainDrops[10] = new RainDrop(200, -500, 100, [166, 214, 222]);
 
 // console.log(myRainDrop);
 var arrayLength = myRainDrops.length;
