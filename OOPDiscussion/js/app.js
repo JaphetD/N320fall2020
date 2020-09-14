@@ -35,6 +35,19 @@ let aFullNote = new FullNote(720);
 
 console.log(aFullNote);
 
+class Grunt {
+    constructor(name, health) {
+        this.name = name;
+        this.health = health;
+    }
+}
+
+class SmallerGrunt extends Grunt {
+    constructor(health) {
+        super(health, 100);
+    }
+}
+
 //Abstraction Example 
 class Vector {
     constructor(x,y) {
@@ -49,6 +62,21 @@ class Vector {
 let velo = new Vector(10, 5);
 let speed = velo.magnitude();
 console.log(speed);
+
+//2nd Abstraction example 
+class Game {
+    constructor(title, genre) {
+        this.title = title;
+        this.genre = genre;
+    }
+    GameCartridge() {
+        return "The title of the cartridge is " + this.title + " and the genre of the cartridge is " + this.genre;
+    }
+}
+
+let game = new Game("The Witcher 3", "Action role-playing game.")
+let Witcher = game.GameCartridge();
+console.log(Witcher);
 
 //Encapsulation Example 
 class Engine {
@@ -68,6 +96,27 @@ getOil() {
     return this.oil;
 }
 }
+
+//2nd Encapsulation Example
+class HealthBar {
+    constructor() {
+        this.health = 100;
+    }
+
+    setHealth(newHealthAmount) {
+        if(newHealthAmount >= 0){
+            this.health = newHealthAmount
+        } else {
+            console.error("You Died...");
+        }
+    }
+
+    getHealth() {
+        return this.health;
+    }
+}
+
+
 
 //Polymorphism Example 
 class Book {
@@ -102,6 +151,38 @@ books.forEach(
 }
 )
 
+class Potion {
+    constructor(health) {
+        this.health = health;
+    }
+
+    restorehealth() {
+        console.log("You regained " + this.health + " health!");
+    }
+}
+
+class SmallPotion extends Potion {
+    constructor() {
+        super(20);
+    }
+}
+
+class LargePotion extends Potion {
+    constructor() {
+        super(300);
+    }
+}
+
+let potions = [];
+potions[0] = new SmallPotion();
+potions[1] = new LargePotion();
+
+potions.forEach(
+    function (Potion) {
+        Potion.restorehealth();
+    }
+)
+
 //Association Example 
 class Dog {
     constructor(name) {
@@ -131,33 +212,175 @@ let ball2 = new Ball("blue")
 dog.play(ball2);
 
 //More extending/Super class Example
+// class Cloud {
+//     constructor(type, speed) {
+//         this.height = 4;
+//         this.type = type;
+//         this.speed = milesSpeed * 1.60934;
+//     }
+// }
+
+// class Altocumulus extends Cloud {
+//     constructor() {
+//         super("Altocumulus", 2);
+
+//         this.fluffiness = 100;
+//     }
+// }
+
+// class Cirrus extends Cloud {
+//     constructor() {
+//         super("Cirrus", 2);
+
+//         this.mileSize = 100;
+//     }
+// }
+
+// let c = new Cloud("Cirrus");
+// console.log(c);
+
+// let c2 = new Cloud("Altocumulus");
+// console.log(c2);
+
+//Aggregation Example also an example of Composition 
+class Guitar {
+    constructor(make, strings, acoustic) {
+        this.make = make;
+        this.strings = strings;
+        this.acoustic = acoustic;
+    }
+
+    strumOpen() {
+        this.strings.forEach(string => {
+            console.log(string.note + " Plays");
+        });
+    }
+}
+
+class String {
+    constructor(note, octave) {
+        this.note = note;
+        this.octave = octave;
+
+    }
+}
+
+var strings = [];
+strings[0] = new String("E", 4);
+strings[1] = new String("A", 4);
+strings[2] = new String("D", 4);
+
+//This is a stub. Outline of code that does not have any errors.
+var myGuitar = new Guitar("Gibson", strings, false);
+
+myGuitar.strumOpen();
+
+//Invoking other object's method 
+class Water {
+    constructor() {
+        this.amount = 100;
+    }
+    drain() {
+        this.amount -=5;
+        console.log("Water drained, new amount: " + this.amount);
+    }
+}
+
+//Class cloud 
+//takes an instance of the Water class to drain from..
 class Cloud {
-    constructor(type, speed) {
-        this.height = 4;
-        this.type = type;
-        this.speed = milesSpeed * 1.60934;
+    constructor(water) {
+        //remember instance of the water class
+        this.water = water;
+        this.size = 10;
+    }
+
+    grow() {
+        this.water.drain();
+        this.size++;
+        console.log("Cloud gew to: " + this.size);
     }
 }
 
-class Altocumulus extends Cloud {
+let someWater = new Water();
+let someCloud = new Cloud(someWater);
+someCloud.grow();
+someCloud.grow();
+someCloud.grow();
+someCloud.grow();
+
+
+//Exposing a callback method
+class Firework {
     constructor() {
-        super("Altocumulus", 2);
+        this.fuse = 12;
+    }
 
-        this.fluffiness = 100;
+    burnFuse() {
+        this.fuse--;
+        if( this.fuse <= 0) {
+            this.activatedCallback();
+        }
     }
 }
 
-class Cirrus extends Cloud {
+class Crowd {
+    constructor(fireworkInstance) {
+        fireworkInstance.activatedCallback = this.marvel;
+    }
+
+    marvel() {
+        console.log("Oooh, and, aaahh");
+    }
+}
+
+let myFirework = new Firework();
+let myCrowd = new Crowd(myFirework);
+
+for( var i = 0; i < 14; i++) {
+myFirework.burnFuse();
+
+}
+
+//Passing through a higher object 
+class Employee {
+    constructor(name, emManager) {
+        this.name = name;
+        this.manager = emManager;
+    }
+
+    quit() {
+        this.manager.employeeQuit();
+    }
+
+    moveOut() {
+        console.log(this.name + "says: Never liked this job anyway!")
+    }
+
+    hire(){
+        console.log(this.name + ", 'My dream job!'");
+    }
+}
+
+class Manager {
     constructor() {
-        super("Cirrus", 2);
+       this.employees = [];
+    }
 
-        this.mileSize = 100;
+    addEmployee(em) {
+        this.employees.push(em);
+        console.log(this.employees);
+    }
+
+    employeeQuit() {
+        this.employees[0].moveOut();
+        this.employees[1].hire();
     }
 }
 
-let c = new Cloud("Cirrus");
-console.log(c);
-
-let c2 = new Cloud("Altocumulus");
-console.log(c2);
-
+let manager = new Manager();
+let emPloyee1 = new Employee("Nick", manager);
+let emPloyee2 = new Employee("Garth", manager);
+manager.addEmployee(emPloyee1);
+manager.addEmployee(emPloyee2);
+emPloyee1.quit();
