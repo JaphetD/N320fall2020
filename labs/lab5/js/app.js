@@ -62,5 +62,5 @@ TweenMax.from(Rect, { duration: 3, alpha: 0, delay:2});
  }
 
  galleryContentDiv.onclick = function() {
-     TweenMax.to(galleryContentDiv, {duration:2, x:3000})
+     TweenMax.to(galleryContentDiv, {duration:.6, x:3000, alpha: 0, delay:.1});
  }
