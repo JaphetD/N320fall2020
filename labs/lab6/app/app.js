@@ -28,6 +28,6 @@ let app2 = new Vue({
         hide:false,
         title: "The Titan's curse",
         author: "Rick Riordan",
-        cover: "🎃"
+        cover: "👾"
     }
 })
