@@ -195,9 +195,34 @@ function ondblclick13() {
 
 //Double click listeners for deletion for white pieces 
 firstWhitePiece.addEventListener("dblclick", ondblclick3);
+secondWhitePiece.addEventListener("dblclick", ondblclick14);
+thirdWhitePiece.addEventListener("dblclick", ondblclick15);
+fourthWhitePiece.addEventListener("dblclick", ondblclick16);
 
 
 function ondblclick3() {
     TweenLite.to(firstWhitePiece, 1,{autoAlpha: 0,display: "none"});
 }
+function ondblclick14() {
+    TweenLite.to(secondWhitePiece, 1,{autoAlpha: 0,display: "none"});
+}
+function ondblclick15() {
+    TweenLite.to(thirdWhitePiece, 1,{autoAlpha: 0,display: "none"});
+}
+function ondblclick16() {
+    TweenLite.to(fourthWhitePiece, 1,{autoAlpha: 0,display: "none"});
+}
 
+
+// let firstWhitePiece = document.getElementById("whitePieceOne");
+// let secondWhitePiece = document.getElementById("whitePieceTwo");
+// let thirdWhitePiece = document.getElementById("whitePieceThree");
+// let fourthWhitePiece = document.getElementById("whitePieceFour");
+// let fifthWhitePiece = document.getElementById("whitePieceFive");
+// let sixthWhitePiece = document.getElementById("whitePieceSix");
+// let seventhWhitePiece = document.getElementById("whitePieceSeven");
+// let eighthWhitePiece = document.getElementById("whitePieceEight");
+// let ninethWhitePiece = document.getElementById("whitePieceNine");
+// let tenthWhitePiece = document.getElementById("whitePieceTen");
+// let eleventhWhitePiece = document.getElementById("whitePieceEleven");
+// let twelfthPiece = document.getElementById("whitePieceTwelve");
